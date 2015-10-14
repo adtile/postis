@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Adtile Technologies Inc.",
-  "license": "UNLICENSED",
+  "author": "Adtile Technologies Inc. <webmaster@adtile.me>",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",
