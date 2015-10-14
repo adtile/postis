@@ -1,6 +1,6 @@
 # Postis
 
-Postis lightway is a wrapper around the PostMessage API
+Postis is a light wrapper around the PostMessage API
 
 ## Installation
 
@@ -10,7 +10,7 @@ $ npm install --save postis
 
 ## Usage
 
-Main HTML which contains iframe:
+Parent HTML which contains an iframe:
 
 ```javascript
 var postis = require("postis");
@@ -22,19 +22,19 @@ var channel = postis({
 });
 
 channel.ready(function() {
-  channel.listen("remoteMessageFromIframe", function(remoteMessage) {
-    console.log("remoteMessageFromIframe:", remoteMessage);
+  channel.listen("remoteMessageFromChild", function(remoteMessage) {
+    console.log("remoteMessageFromChild:", remoteMessage);
   });
 
   channel.send({
-    method: "remoteMessageFromMainHTML",
-    params: { assome: "messsage",
+    method: "remoteMessageFromParent",
+    params: { awesome: "messsage",
               from: "Parent window"}
   });
 });
 ```
 
-In Embedded iframe:
+In embedded child iframe:
 
 ```javascript
 var postis = require("postis");
@@ -46,14 +46,14 @@ var channel = postis({
 });
 
 channel.ready(function() {
-  channel.listen("remoteMessageFromMainHTML", function(remoteMessage) {
-    console.log("remoteMessageFromMainHTML:", remoteMessage);
+  channel.listen("remoteMessageFromParent", function(remoteMessage) {
+    console.log("remoteMessageFromParent:", remoteMessage);
   });
 
   channel.send({
-    method: "remoteMessageFromIframe",
-    params: { assome: "messsage",
-              from: "iframe"}
+    method: "remoteMessageFromChild",
+    params: { awesome: "messsage",
+              from: "child iframe"}
   });
 });
 ```

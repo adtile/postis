@@ -93,4 +93,4 @@ function Postis(options) {
   return postis;
 }
 
-module.exports = Posty;
+module.exports = Postis;
