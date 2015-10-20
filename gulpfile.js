@@ -7,8 +7,8 @@ gulp.task("webpack", function(callback) {
     entry: "./src/index.js",
     output: {
         path: __dirname + "/dist",
-        filename: "posty.js",
-        library: "Posty",
+        filename: "postis.js",
+        library: "Postis",
         libraryTarget: "var"
     },
     plugins: [

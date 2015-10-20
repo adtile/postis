@@ -1,13 +1,33 @@
 {
-  "name": "posty",
+  "name": "postis",
   "version": "1.1.0",
-  "description": "",
+  "description": "Lightway is a wrapper around the PostMessage API",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Adtile Technologies Inc.",
-  "license": "UNLICENSED",
+  "author": "Adtile Technologies Inc. <webmaster@adtile.me>",
+  "contributors": [
+    {
+      "name": "Joao Carlos",
+      "email": "joao@adtile.me"
+    }, {
+      "name": "Jaakko Suutarla",
+      "email": "jaakko@adtile.me"
+    }
+  ],
+  "keywords": [
+    "postmessage",
+    "iframe"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adtile/postis"
+  },
+  "bugs": {
+    "url": "https://github.com/adtile/postis/issues"
+  },
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-util": "^3.0.6",

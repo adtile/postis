@@ -1,4 +1,4 @@
-function Posty(options) {
+function Postis(options) {
   var scope = options.scope;
   var targetWindow = options.window;
   var listeners = {};
@@ -10,7 +10,7 @@ function Posty(options) {
   window.addEventListener("message", function (event) {
     var data = JSON.parse(event.data);
     var params = [].concat(data.params);
-    if (data.posty && data.scope === scope) {
+    if (data.postis && data.scope === scope) {
       var listenersForMethod = listeners[data.method];
       if (listenersForMethod) {
         for (var i = 0; i < listenersForMethod.length; i++) {
@@ -23,7 +23,7 @@ function Posty(options) {
     }
   }, false);
 
-  var posty = {
+  var postis = {
     listen: function (method, callback) {
       listeners[method] = listeners[method] || [];
       listeners[method].push(callback);
@@ -45,7 +45,7 @@ function Posty(options) {
 
       if (ready || opts.method === readyMethod) {
         targetWindow.postMessage(JSON.stringify({
-          posty: true,
+          postis: true,
           scope: scope,
           method: method,
           params: opts.params
@@ -59,7 +59,7 @@ function Posty(options) {
       if (ready) {
         callback();
       } else {
-        setTimeout(function () { posty.ready(callback); }, 50);
+        setTimeout(function () { postis.ready(callback); }, 50);
       }
     }
   };
@@ -67,30 +67,30 @@ function Posty(options) {
   var readyCheckID = +new Date() + Math.random() + "";
 
   var readynessCheck = setInterval(function () {
-    posty.send({
+    postis.send({
       method: readyMethod,
       params: readyCheckID
     });
   }, 50);
 
-  posty.listen(readyMethod, function (id) {
+  postis.listen(readyMethod, function (id) {
     if (id === readyCheckID) {
       clearInterval(readynessCheck);
       ready = true;
 
       for (var i = 0; i < sendBuffer.length; i++) {
-        posty.send(sendBuffer[i]);
+        postis.send(sendBuffer[i]);
       }
       sendBuffer = [];
     } else {
-      posty.send({
+      postis.send({
         method: readyMethod,
         params: id
       });
     }
   });
 
-  return posty;
+  return postis;
 }
 
-module.exports = Posty;
+module.exports = Postis;
