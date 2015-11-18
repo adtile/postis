@@ -9,16 +9,16 @@ function Postis(options) {
 
   window.addEventListener("message", function (event) {
     var data = JSON.parse(event.data);
-    var params = [].concat(data.params);
+    
     if (data.postis && data.scope === scope) {
       var listenersForMethod = listeners[data.method];
       if (listenersForMethod) {
         for (var i = 0; i < listenersForMethod.length; i++) {
-          listenersForMethod[i].apply(null, params);
+          listenersForMethod[i].call(null, data.params);
         }
       } else {
         listenBuffer[data.method] = listenBuffer[data.method] || [];
-        listenBuffer[data.method].push(params);
+        listenBuffer[data.method].push(data.params);
       }
     }
   }, false);
@@ -33,7 +33,7 @@ function Postis(options) {
         var listenersForMethod = listeners[method];
         for (var i = 0; i < listenersForMethod.length; i++) {
           for (var j = 0; j < listenBufferForMethod.length; j++) {
-            listenersForMethod[i].apply(null, listenBufferForMethod[j]);
+            listenersForMethod[i].call(null, listenBufferForMethod[j]);
           }
         }
       }
