@@ -1,5 +1,6 @@
 function Postis(options) {
   var scope = options.scope;
+  var SYN_ACK_TOKEN = 42;
   var targetWindow = options.window;
   var windowForEventListening = options.windowForEventListening || window;
   var listeners = {};
@@ -69,7 +70,7 @@ function Postis(options) {
     }
   };
 
-  var readyCheckID = +new Date() + Math.random() + "";
+  var readyCheckID = +new Date() + Math.random();
 
   var readynessCheck = setInterval(function () {
     postis.send({
@@ -79,7 +80,7 @@ function Postis(options) {
   }, 50);
 
   postis.listen(readyMethod, function (id) {
-    if (id === readyCheckID) {
+    if (id === (readyCheckID + SYN_ACK_TOKEN)) {
       clearInterval(readynessCheck);
       ready = true;
 
@@ -90,7 +91,7 @@ function Postis(options) {
     } else {
       postis.send({
         method: readyMethod,
-        params: id
+        params: id + SYN_ACK_TOKEN
       });
     }
   });
