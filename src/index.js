@@ -1,13 +1,14 @@
 function Postis(options) {
   var scope = options.scope;
   var targetWindow = options.window;
+  var windowForEventListening = options.windowForEventListening || window;
   var listeners = {};
   var sendBuffer = [];
   var listenBuffer = {};
   var ready = false;
   var readyMethod = "__ready__";
 
-  window.addEventListener("message", function (event) {
+  windowForEventListening.addEventListener("message", function (event) {
     try {
       var data = JSON.parse(event.data);
     } catch (e) {
