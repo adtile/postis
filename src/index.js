@@ -8,8 +8,12 @@ function Postis(options) {
   var readyMethod = "__ready__";
 
   window.addEventListener("message", function (event) {
-    var data = JSON.parse(event.data);
-    
+    try {
+      var data = JSON.parse(event.data);
+    } catch (e) {
+      return;
+    }
+
     if (data.postis && data.scope === scope) {
       var listenersForMethod = listeners[data.method];
       if (listenersForMethod) {
