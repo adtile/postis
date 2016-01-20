@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0] - 2016-01-20
+### Added
+- Support for windowForEventListening which can be used with sourceless iframes.
+
 ## [2.0.1] - 2016-01-20
 ### Fixed
 - Add `try catch` block around JSON.parse to handle non JSON payloads.
