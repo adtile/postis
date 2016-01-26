@@ -48,7 +48,7 @@ function Postis(options) {
     send: function (opts) {
       var method = opts.method;
 
-      if (ready || opts.method === readyMethod && (targetWindow && typeof targetWindow.postMessage !== "undefined")) {
+      if ((ready || opts.method === readyMethod) && (targetWindow && typeof targetWindow.postMessage === "function")) {
         targetWindow.postMessage(JSON.stringify({
           postis: true,
           scope: scope,
