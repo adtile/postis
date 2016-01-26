@@ -1,6 +1,6 @@
 {
   "name": "postis",
-  "version": "3.0.0",
+  "version": "2.1.0",
   "description": "Lightweight wrapper around the PostMessage API",
   "main": "src/index.js",
   "scripts": {
