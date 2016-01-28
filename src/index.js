@@ -78,7 +78,7 @@ function Postis(options) {
       if (windowForEventListening && typeof windowForEventListening.removeEventListener === "function") {
         windowForEventListening.removeEventListener("message", listener);
       }
-      callback();
+      callback && callback();
     }
   };
 
