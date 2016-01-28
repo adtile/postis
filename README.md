@@ -57,3 +57,16 @@ channel.ready(function() {
   });
 });
 ```
+
+## Release
+
+New releases are prepared in master after merging the PRs. Please include a meaningful changelog entry in PR.
+
+Write a new `CHANGELOG.md` entry before running built-in [npm version](https://docs.npmjs.com/cli/version) bump and add the change to next commit.
+
+```
+npm version <major | minor | patch>
+git push --tags
+```
+
+`npm version` should include added changelog entry in the commit. Remember to push changes.
