@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0] - 2016-02-01
+### Added
+- Adds destroy method to Postis channel
+
 ## [2.1.1] - 2016-01-28
 ### Fixed
 - Check that targetWindow has postMessage property on send
