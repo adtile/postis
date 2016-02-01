@@ -7,10 +7,12 @@ function Postis(options) {
   var listenBuffer = {};
   var ready = false;
   var readyMethod = "__ready__";
+  var readynessCheck;
 
-  windowForEventListening.addEventListener("message", function (event) {
+  var listener = function(event) {
+    var data;
     try {
-      var data = JSON.parse(event.data);
+      data = JSON.parse(event.data);
     } catch (e) {
       return;
     }
@@ -26,7 +28,9 @@ function Postis(options) {
         listenBuffer[data.method].push(data.params);
       }
     }
-  }, false);
+  };
+
+  windowForEventListening.addEventListener("message", listener, false);
 
   var postis = {
     listen: function (method, callback) {
@@ -66,12 +70,21 @@ function Postis(options) {
       } else {
         setTimeout(function () { postis.ready(callback); }, 50);
       }
+    },
+
+    destroy: function (callback) {
+      clearInterval(readynessCheck);
+      ready = false;
+      if (windowForEventListening && typeof windowForEventListening.removeEventListener === "function") {
+        windowForEventListening.removeEventListener("message", listener);
+      }
+      callback && callback();
     }
   };
 
   var readyCheckID = +new Date() + Math.random() + "";
 
-  var readynessCheck = setInterval(function () {
+  readynessCheck = setInterval(function () {
     postis.send({
       method: readyMethod,
       params: readyCheckID
