@@ -30,8 +30,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-util": "^3.0.6",
-    "webpack": "^1.12.2"
+    "gulp": "3.9.1",
+    "gulp-util": "3.0.7",
+    "webpack": "1.13.1"
   }
 }
