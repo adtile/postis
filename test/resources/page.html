@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Replaced</title>
+    <script type="text/javascript" src="http://localhost:8080/dist/postis.js"></script>
+    <script type="text/javascript">
+    !(function(d, qs) {
+        var src;
+        var script = qs.match(/inject=([^&]+)/);
+        if (script) {
+          src = atob(decodeURIComponent(script.pop()));
+          document.write('<'+'script>' + src + '<'+'/script>');
+        }
+      }(document, window.location.search));
+    </script>
+  </head>
+  <body>
+    <h1>Replaced</h1>
+  </body>
+</html>
